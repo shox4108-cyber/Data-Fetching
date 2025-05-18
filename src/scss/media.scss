@@ -1,0 +1,194 @@
+@media (max-width: 1130px) {
+    .home {
+        flex-direction: row;
+        align-items: baseline;
+        margin-top: 15vh;
+
+        &__context {
+            max-width: 50%;
+
+            &-title {
+                position: absolute;
+                font-size: 3rem;
+                top: 0;
+                bottom: 0;
+                right: 0;
+            }
+
+            &-subtitle {
+                position: absolute;
+                font-size: 1rem;
+                top: 40%;
+                bottom: 0;
+                right: 0;
+
+            }
+
+
+        }
+    }
+}
+
+@media (max-width:800px) {
+    .nav {
+        &__box {
+            flex-direction: column;
+            padding: 10px 0;
+            gap: 20px;
+        }
+    }
+
+    .home {
+        flex-direction: row;
+        align-items: baseline;
+        margin-top: 15vh;
+
+        &__context {
+            max-width: 70%;
+
+            &-title {
+                position: absolute;
+                font-size: 3rem;
+                top: 0;
+                bottom: 0;
+                right: 0;
+            }
+
+            &-subtitle {
+                position: absolute;
+                font-size: 1rem;
+                top: 40%;
+                bottom: 0;
+                right: 10%;
+
+            }
+
+
+        }
+    }
+
+    .info__card {
+        height: 350px;
+    }
+
+    .details {
+        height: 100vh;
+    }
+
+    .details__content {
+        flex-direction: column;
+        gap: 10px;
+
+        &-img {
+            height: 100%;
+            width: 100%;
+        }
+
+        &-box {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width:680px) {
+    .nav {
+        &__list {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        &__link {
+            width: 90px;
+            height: 30px;
+        }
+    }
+
+    .home {
+        flex-direction: row;
+        align-items: baseline;
+        margin-top: 15vh;
+
+        &__context {
+            max-width: none;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 30px;
+            
+
+            &-title {
+                font-size: 3rem;
+                text-align: center;
+
+            }
+
+            &-subtitle {
+                font-size: 1rem;
+                text-align: center;
+                margin-right: 5vh;
+            }
+
+
+        }
+    }
+}
+
+
+@media (max-width: 550px) {
+    .nav {
+      &__list {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+  
+      &__link {
+        width: 90px;
+        height: 30px;
+      }
+    }
+  
+    .home {
+      margin-top: 10vh;
+      flex-direction: column; 
+      align-items: center;
+      justify-content: start;
+  
+      &__context {
+        width: 100%;
+        max-width: 90%;     
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        gap: 20px;
+        text-align: center;
+  
+        &-title {
+          font-size: 2.4rem; 
+          position: static;    
+        }
+  
+        &-subtitle {
+          font-size: 1rem;
+          position: static;
+          margin-right: 0;  
+        }
+      }
+    }
+
+    .rope {
+        height: 30.62em;
+    }
+
+    .legs {
+        top: 23.5em;
+    }
+
+    .costume {
+        top: 25.68em;
+    }
+  }
+  
