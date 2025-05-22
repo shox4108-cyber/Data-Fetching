@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FaChalkboardUser } from "react-icons/fa6";
-import { IoChatbubblesOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useGetUsersQuery } from "../store/api";
 
 const Posts = ({ vantaBirdsRef }) => {
-  const [data, setData] = useState(null);
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
-  const getData = async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users");
-      const result = await res.json();
-      setData(result.slice(0, 10));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { data } = useGetUsersQuery();
 
   const searchData = (event) => {
     event.preventDefault();
@@ -27,11 +17,6 @@ const Posts = ({ vantaBirdsRef }) => {
     );
     setFilteredData(searchedData);
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   useEffect(() => {
     if (!data) return;
     const searchedData = data.filter((item) =>
@@ -41,7 +26,11 @@ const Posts = ({ vantaBirdsRef }) => {
   }, [search, data]);
 
   const renderLoader = (text) => (
-    <div className={`loading ${usersToDisplay && usersToDisplay.length <= 0 ? 'search' : ''}`}>
+    <div
+      className={`loading ${
+        usersToDisplay && usersToDisplay.length <= 0 ? "search" : ""
+      }`}
+    >
       <div className="loading__box">
         <div className="card__loader">
           <svg className="card__loader-outer" viewBox="0 0 86 86">
@@ -109,14 +98,20 @@ const Posts = ({ vantaBirdsRef }) => {
           {usersToDisplay && usersToDisplay.length > 0 ? (
             <div className="info__cards">
               {usersToDisplay.map((user) => (
-                <Link to={`/users/${user.id}`} className="info__card link" key={user.id}>
+                <Link
+                  to={`/users/${user.id}`}
+                  className="info__card link"
+                  key={user.id}
+                >
                   <div className="info__card-img">
                     <FaChalkboardUser />
                   </div>
                   <div className="info__card-info">
                     <div className="info__card-text">
                       <p className="info__card-title">{user.name}</p>
-                      <p className="info__card-subtitle">Username: {user.username}</p>
+                      <p className="info__card-subtitle">
+                        Username: {user.username}
+                      </p>
                       <p className="info__card-subtitle">Email: {user.email}</p>
                     </div>
                     <div className="info__card-icons">

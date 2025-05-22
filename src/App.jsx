@@ -7,12 +7,15 @@ import Home from "./pages/Home";
 import { useEffect, useRef } from "react";
 import NotFound from "./pages/NotFound";
 import Details from "./pages/Details";
+import { useDispatch } from "react-redux";
+import { getUsers } from "./store/usersSlice/usersSlice";
 
 function App() {
   const vantaBirdsRef = useRef(null);
   const location = useLocation()
   const hideNavbarPaths = ["/not-found"];
   const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (vantaBirdsRef.current) {
@@ -28,6 +31,10 @@ function App() {
       });
     }
   }, [location]);
+
+  useEffect(() => {
+    dispatch(getUsers)
+  }, [dispatch])
   
 
   return (

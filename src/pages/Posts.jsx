@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useGetPostsQuery } from "../store/api";
 
 const Posts = ({ vantaBirdsRef }) => {
-  const [data, setData] = useState(null);
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
-  const getData = async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const result = await res.json();
-      setData(result.slice(0, 10));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { data } = useGetPostsQuery();
 
   const searchData = (event) => {
     event.preventDefault();
@@ -26,11 +17,6 @@ const Posts = ({ vantaBirdsRef }) => {
     );
     setFilteredData(searchedData);
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   useEffect(() => {
     if (!data) return;
     const searchedData = data.filter((item) =>
@@ -40,7 +26,11 @@ const Posts = ({ vantaBirdsRef }) => {
   }, [search, data]);
 
   const renderLoader = (text) => (
-    <div className={`loading ${postsToDisplay && postsToDisplay.length <= 0 ? 'search' : ''}`}>
+    <div
+      className={`loading ${
+        postsToDisplay && postsToDisplay.length <= 0 ? "search" : ""
+      }`}
+    >
       <div className="loading__box">
         <div className="card__loader">
           <svg className="card__loader-outer" viewBox="0 0 86 86">
@@ -108,7 +98,11 @@ const Posts = ({ vantaBirdsRef }) => {
           {postsToDisplay && postsToDisplay.length > 0 ? (
             <div className="info__cards">
               {postsToDisplay.map((post) => (
-                <Link to={`/posts/${post.id}`} className="info__card link" key={post.id}>
+                <Link
+                  to={`/posts/${post.id}`}
+                  className="info__card link"
+                  key={post.id}
+                >
                   <div className="info__card-img">
                     <IoChatbubblesOutline />
                   </div>

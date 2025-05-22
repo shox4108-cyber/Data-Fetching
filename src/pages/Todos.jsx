@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from "react";
 import {
   IoAlert,
-  IoChatbubblesOutline,
   IoCheckmarkDone,
 } from "react-icons/io5";
 import { LuListTodo } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import { useGetTodosQuery } from "../store/api";
 
 const Todos = ({ vantaBirdsRef }) => {
-  const [data, setData] = useState(null);
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
-  const getData = async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-      const result = await res.json();
-      setData(result.slice(0, 10));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const {data} = useGetTodosQuery()
 
   const searchData = (event) => {
     event.preventDefault();
@@ -31,10 +21,6 @@ const Todos = ({ vantaBirdsRef }) => {
     );
     setFilteredData(searchedData);
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   useEffect(() => {
     if (!data) return;

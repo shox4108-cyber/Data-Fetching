@@ -1,22 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useGetDetailsQuery } from "../store/api";
 
 const Details = () => {
   const netRef = useRef(null);
   const { type, id } = useParams();
-  const [data, setData] = useState(null);
-
-  const getDetailData = async () => {
-    try {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/${type}/${id}`
-      );
-      const data = await res.json();
-      setData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { data } = useGetDetailsQuery({type, id});
 
   const renderImage = () => {
     if (type == "users") {
@@ -142,7 +131,6 @@ const Details = () => {
         backgroundColor: 0x1b0d2f,
       });
     }
-    getDetailData();
   }, []);
 
   return (
